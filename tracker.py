@@ -80,7 +80,7 @@ def process_choice(choice):
         category.update(rowid,cat)
     elif choice=='4': 
         #Completed by James Kong on 3/23/2022
-        trans = transactions.select_All()
+        trans = transactions.select_all()
         print_transactions(trans)
     elif choice=='5':
         #Completed by James Kong on 3/23/2022
