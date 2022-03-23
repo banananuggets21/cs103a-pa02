@@ -2,6 +2,7 @@ import sqlite3
 
 class transactions():
 
+    #Completed By James Kong on 3/23/2022
     def __init__(self, fileName):
         self.fileName = fileName
         con = sqlite3.connect(fileName)
@@ -12,24 +13,31 @@ class transactions():
         con.close()
         self.fileName = fileName
 
-    def showTranscations():
+    #Completed By James Kong on 3/23/2022
+    def showTranscations(self):
+        con = sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        results = cur.execute("SELECT * FROM data")
+        data = [x for x in results]
+        con.commit()
+        con.close()
+        return data
+
+    def addTransaction(self):
         return None
 
-    def addTransaction():
+    def deleteTranscation(self):
         return None
 
-    def deleteTranscation():
+    def sumTransactionsByDate(self):
         return None
 
-    def sumTransactionsByDate():
+    def sumTransactionsByMonth(self):
         return None
 
-    def sumTransactionsByMonth():
+    def sumTransactionsByYear(self):
         return None
 
-    def sumTransactionsByYear():
-        return None
-
-    def sumTransactionsByCategory():
+    def sumTransactionsByCategory(self):
         return None
 
