@@ -2,11 +2,13 @@
 import pytest
 from transactions import Transaction
 
+#Completed By James Kong on 3/23/2022
 @pytest.fixture
 def dbfile(tmpdir):
     ''' create a database file in a temporary file system '''
     return tmpdir.join('test_tracker.db')
 
+#Completed By James Kong on 3/23/2022
 @pytest.fixture
 def empty_db(dbfile):
     ''' create an empty database '''
