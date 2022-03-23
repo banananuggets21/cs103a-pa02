@@ -1,5 +1,14 @@
 import sqlite3
 
+#Completed By James Kong on 3/23/2022
+def to_trans_dict(trans_tuple):
+    trans = {'rowid':trans_tuple[0], 'item #':trans_tuple[1], 'amount':trans_tuple[2], 'category':trans_tuple[3], 'date':trans_tuple[4], 'description':trans_tuple[5]}
+    return trans
+
+#Completed By James Kong on 3/23/2022
+def to_trans_dict_list(trans_tuples):
+    return [to_trans_dict(tran) for tran in trans_tuples]
+
 class Transaction():
 
     #Completed By James Kong on 3/23/2022
@@ -14,14 +23,25 @@ class Transaction():
         self.fileName = fileName
 
     #Completed By James Kong on 3/23/2022
-    def selectAll(self):
-        con = sqlite3.connect(self.fileName)
+    def select_all(self):
+        con= sqlite3.connect(self.fileName)
         cur = con.cursor()
-        results = cur.execute("SELECT * FROM data")
-        data = [x for x in results]
+        cur.execute("SELECT rowid,* from transactions")
+        tuples = cur.fetchall()
         con.commit()
         con.close()
-        return data
+        return to_trans_dict_list(tuples)
+
+    #Completed By James Kong on 3/23/2022
+    def select_one(self,rowid):
+        ''' return a category with a specified rowid '''
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute("SELECT rowid,* from transactions where rowid=(?)",(rowid,) )
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return to_trans_dict(tuples[0])
     
     #Completed By James Kong on 3/23/2022
     def addTransaction(self, item):
@@ -39,7 +59,7 @@ class Transaction():
     def deleteTransaction(self, rowid):
         con= sqlite3.connect(self.fileName)
         cur = con.cursor()
-        cur.execute('''DELETE FROM categories
+        cur.execute('''DELETE FROM transactions
                        WHERE rowid=(?);
         ''',(rowid,))
         con.commit()

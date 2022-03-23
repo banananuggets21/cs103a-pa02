@@ -80,7 +80,7 @@ def process_choice(choice):
         category.update(rowid,cat)
     elif choice=='4': 
         #Completed by James Kong on 3/23/2022
-        trans = transactions.selectAll()
+        trans = transactions.select_All()
         print_transactions(trans)
     elif choice=='5':
         #Completed by James Kong on 3/23/2022
@@ -90,7 +90,7 @@ def process_choice(choice):
         date = input("date: ")
         desc = input("description: ")
         transaction = {'item #': itemNum,'amount': amount, 'category': transCategory, 'date': date, 'description': desc}
-        transactions.add(transaction)
+        transactions.addTransaction(transaction)
     elif choice=='6':
         #Completed By James Kong on 3/23/2022
         delete = input("Enter transaction rowid: ")
