@@ -1,6 +1,6 @@
 import sqlite3
 
-class transactions():
+class Transaction():
 
     #Completed By James Kong on 3/23/2022
     def __init__(self, fileName):
@@ -14,7 +14,7 @@ class transactions():
         self.fileName = fileName
 
     #Completed By James Kong on 3/23/2022
-    def showTranscations(self):
+    def selectAll(self):
         con = sqlite3.connect(self.fileName)
         cur = con.cursor()
         results = cur.execute("SELECT * FROM data")
@@ -22,12 +22,28 @@ class transactions():
         con.commit()
         con.close()
         return data
+    
+    #Completed By James Kong on 3/23/2022
+    def addTransaction(self, item):
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute("INSERT INTO transactions VALUES(?,?,?,?,?)",(item['item #'],item['amount'], item['category'], item['date'], item['description']))
+        con.commit()
+        cur.execute("SELECT last_insert_rowid()")
+        last_rowid = cur.fetchone()
+        con.commit()
+        con.close()
+        return last_rowid[0]
 
-    def addTransaction(self):
-        return None
-
-    def deleteTranscation(self):
-        return None
+    #Completed By James Kong on 3/23/2022
+    def deleteTransaction(self, rowid):
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute('''DELETE FROM categories
+                       WHERE rowid=(?);
+        ''',(rowid,))
+        con.commit()
+        con.close()
 
     def sumTransactionsByDate(self):
         return None
