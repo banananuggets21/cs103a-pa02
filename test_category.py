@@ -108,7 +108,7 @@ def test_update(med_db):
             }
     rowid = med_db.add(cat0)
 
-    # now we upate the category
+    # now we update the category
     cat1 = {'name':'new cat','desc':'new desc'}
     med_db.update(rowid,cat1)
 

@@ -7,7 +7,10 @@ class transactions():
         con = sqlite3.connect(fileName)
         cur = con.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS transactions 
-        ('item num' int, 'amount' int, 'category' text, 'date' text, 'description' text)''')
+        ('item num' int, amount int, category text, date text, description text)''')
+        con.commit()
+        con.close()
+        self.fileName = fileName
 
     def showTranscations():
         return None
