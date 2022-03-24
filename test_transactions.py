@@ -19,7 +19,7 @@ def empty_db(dbfile):
 @pytest.fixture
 def small_DB(empty_db):
     transaction1 = {'item #': 3,'amount': 30, 'category': 'gaming', 'date': '03/23/22', 'description': '144hz monitor'}
-    transaction2 = {'item #': 5,'amount': 20, 'category': 'pet supplies', 'date': '03/24/22', 'description': 'litter box'}
+    transaction2 = {'item #': 5,'amount': 20, 'category': 'pet supplies', 'date': 2022, 'description': 'litter box'}
     id1= empty_db.add_transaction(transaction1)
     id2= empty_db.add_transaction(transaction2)
     yield empty_db
@@ -29,7 +29,7 @@ def small_DB(empty_db):
 #Completed By James Kong on 3/23/2022
 @pytest.mark.add
 def test_addTransactions(small_DB):
-    testTransaction = {'item #': 2,'amount': 96, 'category': 'toiletries', 'date': '03/25/22', 'description': 'toilet paper'}
+    testTransaction = {'item #': 2,'amount': 96, 'category': 'toiletries', 'date': 2022, 'description': 'toilet paper'}
     transactions0 = small_DB.select_all()
     rowid = small_DB.add_transaction(testTransaction)
     transactions1 = small_DB.select_all()
@@ -44,7 +44,7 @@ def test_addTransactions(small_DB):
 @pytest.mark.delete
 def test_delete(small_DB):
     transactions0 = small_DB.select_all()
-    transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': '05/10/22', 'description': 'banana'}
+    transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': 2022, 'description': 'banana'}
     rowid = small_DB.add_transaction(transaction0)
     transactions1 = small_DB.select_all()
     small_DB.delete_transaction(rowid)

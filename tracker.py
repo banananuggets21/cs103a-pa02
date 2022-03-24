@@ -85,8 +85,8 @@ def process_choice(choice):
         #Completed by James Kong on 3/23/2022
         item_num = int(input("transaction item #: "))
         amount = int(input("transaction amount: "))
-        trans_category = int(input("category: "))
-        date = input("date: ")
+        trans_category = input("category: ")
+        date = int(input("date: "))
         desc = input("description: ")
         transaction = {'item #': item_num, 'amount': amount, 'category': trans_category, 'date': date, 'description': desc}
         transactions.add_transaction(transaction)
