@@ -60,14 +60,40 @@ class Transaction():
         con.commit()
         con.close()
     
-    def sum_transactions_by_date(self):
-        return None
+    #Completed by Jeremy Bernstein on 3/23/2022
+    def sumTransactionsByDate(self):
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute("SELECT date from transactions")
+        date = (row[2] for row in cur.fetchall())
+        #date = date[1:]
+        con.commit()
+        con.close()
+        return date
 
-    def sum_transactions_by_month(self):
-        return None
-
-    def sum_transactions_by_year(self):
-        return None
+    #Completed by Jeremy Bernstein on 3/23/2022
+    def sumTransactionsByMonth(self):
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute("SELECT date from transactions")
+        date = (row[2] for row in cur.fetchall())
+        for month in date:
+            month = month[4:5]
+        con.commit()
+        con.close()
+        return date
+    
+    #Completed by Jeremy Bernstein on 3/23/2022
+    def sumTransactionsByYear(self):
+        con= sqlite3.connect(self.fileName)
+        cur = con.cursor()
+        cur.execute("SELECT date from transactions")
+        date = (row[2] for row in cur.fetchall())
+        for year in date:
+            year = year[0:3]
+        con.commit()
+        con.close()
+        return date
 
     def sum_transactions_by_category(self):
         return None

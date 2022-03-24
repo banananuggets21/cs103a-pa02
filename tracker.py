@@ -94,6 +94,20 @@ def process_choice(choice):
         #Completed By James Kong on 3/23/2022
         delete = input("Enter transaction rowid: ")
         transactions.delete_transaction(delete)
+    elif choice=='7':
+        #Completed By Jeremy Bernstein on 3/23/2022
+        trans = transactions.select_all
+        transactions.sumTransactionsByDate()
+    elif choice=='8':
+        #Completed by Jeremy Bernstein on 3/23/2022
+        trans = transactions.select_all
+        transactions.sumTransactionsByMonth()
+    elif choice=='9':
+        #Completed by Jeremy Bernstein on 3/23/2022
+        trans = transactions.select_all
+        transactions.sumTransactionsByYear()
+    elif choice=='10':
+        transactions.delete_transaction(delete)
     elif choice == '11':
         #Completed by James Kong on 3/21/2022
         print(menu)
