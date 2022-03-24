@@ -18,7 +18,7 @@ def empty_db(dbfile):
 #Completed By James Kong on 3/23/2022
 @pytest.fixture
 def small_DB(empty_db):
-    transaction1 = {'item #': 3,'amount': 30, 'category': 'gaming', 'date': '03/23/22', 'description': '144hz monitor'}
+    transaction1 = {'item #': 3,'amount': 30, 'category': 'gaming', 'date': 2022, 'description': '144hz monitor'}
     transaction2 = {'item #': 5,'amount': 20, 'category': 'pet supplies', 'date': 2022, 'description': 'litter box'}
     id1= empty_db.add_transaction(transaction1)
     id2= empty_db.add_transaction(transaction2)
