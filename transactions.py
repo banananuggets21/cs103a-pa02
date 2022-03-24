@@ -39,7 +39,7 @@ class Transaction():
         con.commit()
         con.close()
         return to_trans_dict(tuples[0])
-    
+
     def add_transaction(self, item):
         '''Completed By James Kong on 3/23/2022'''
         con = sqlite3.connect(self.file_name)
@@ -59,7 +59,7 @@ class Transaction():
         cur.execute('''DELETE FROM transactions WHERE rowid = (?); ''', (rowid,))
         con.commit()
         con.close()
-    
+
     #Completed by Jeremy Bernstein on 3/23/2022
     def sum_transactions_by_date(self):
         con= sqlite3.connect(self.file_name)
@@ -82,7 +82,7 @@ class Transaction():
         con.commit()
         con.close()
         return date
-    
+
     #Completed by Jeremy Bernstein on 3/23/2022
     def sum_transactions_by_year(self):
         con= sqlite3.connect(self.file_name)
@@ -95,5 +95,12 @@ class Transaction():
         con.close()
         return date
 
+    #Completed by Hiro Chen on 3/24/2022
     def sum_transactions_by_category(self):
-        return None
+        con = sqlite3.connect(self.file_name)
+        cur = con.cursor()
+        cur.exceute("SELECT date from transactions")
+        category = <row[1] for row in cur.fetchall())
+        con.commit()
+        con.close()
+        return category
