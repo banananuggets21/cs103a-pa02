@@ -1,30 +1,28 @@
 import sqlite3
 
-#Completed By James Kong on 3/23/2022
 def to_trans_dict(trans_tuple):
+    '''Completed By James Kong on 3/23/2022'''
     trans = {'rowid':trans_tuple[0], 'item #':trans_tuple[1], 'amount':trans_tuple[2], 'category':trans_tuple[3], 'date':trans_tuple[4], 'description':trans_tuple[5]}
     return trans
 
-#Completed By James Kong on 3/23/2022
 def to_trans_dict_list(trans_tuples):
+    '''Completed By James Kong on 3/23/2022'''
     return [to_trans_dict(tran) for tran in trans_tuples]
 
 class Transaction():
 
-    #Completed By James Kong on 3/23/2022
-    def __init__(self, fileName):
-        self.fileName = fileName
-        con = sqlite3.connect(fileName)
+    def __init__(self, file_name):
+        '''Completed By James Kong on 3/23/2022'''
+        con = sqlite3.connect(file_name)
         cur = con.cursor()
-        cur.execute('''CREATE TABLE IF NOT EXISTS transactions 
-        ('item num' int, amount int, category text, date text, description text)''')
+        cur.execute('''CREATE TABLE IF NOT EXISTS transactions ('item num' int, amount int, category text, date text, description text)''')
         con.commit()
         con.close()
-        self.fileName = fileName
+        self.file_name = file_name
 
-    #Completed By James Kong on 3/23/2022
     def select_all(self):
-        con= sqlite3.connect(self.fileName)
+        '''Completed By James Kong on 3/23/2022'''
+        con = sqlite3.connect(self.file_name)
         cur = con.cursor()
         cur.execute("SELECT rowid,* from transactions")
         tuples = cur.fetchall()
@@ -32,22 +30,21 @@ class Transaction():
         con.close()
         return to_trans_dict_list(tuples)
 
-    #Completed By James Kong on 3/23/2022
-    def select_one(self,rowid):
-        ''' return a category with a specified rowid '''
-        con= sqlite3.connect(self.fileName)
+    def select_one(self, rowid):
+        '''Completed By James Kong on 3/23/2022'''
+        con = sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("SELECT rowid,* from transactions where rowid=(?)",(rowid,) )
+        cur.execute("SELECT rowid, * from transactions where rowid = (?)", (rowid,))
         tuples = cur.fetchall()
         con.commit()
         con.close()
         return to_trans_dict(tuples[0])
     
-    #Completed By James Kong on 3/23/2022
-    def addTransaction(self, item):
-        con= sqlite3.connect(self.fileName)
+    def add_transaction(self, item):
+        '''Completed By James Kong on 3/23/2022'''
+        con = sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("INSERT INTO transactions VALUES(?,?,?,?,?)",(item['item #'],item['amount'], item['category'], item['date'], item['description']))
+        cur.execute("INSERT INTO transactions VALUES(?,?,?,?,?)", (item['item #'], item['amount'], item['category'], item['date'], item['description']))
         con.commit()
         cur.execute("SELECT last_insert_rowid()")
         last_rowid = cur.fetchone()
@@ -55,25 +52,22 @@ class Transaction():
         con.close()
         return last_rowid[0]
 
-    #Completed By James Kong on 3/23/2022
-    def deleteTransaction(self, rowid):
-        con= sqlite3.connect(self.fileName)
+    def delete_transaction(self, rowid):
+        '''Completed By James Kong on 3/23/2022'''
+        con = sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute('''DELETE FROM transactions
-                       WHERE rowid=(?);
-        ''',(rowid,))
+        cur.execute('''DELETE FROM transactions WHERE rowid = (?); ''', (rowid,))
         con.commit()
         con.close()
-
-    def sumTransactionsByDate(self):
+    
+    def sum_transactions_by_date(self):
         return None
 
-    def sumTransactionsByMonth(self):
+    def sum_transactions_by_month(self):
         return None
 
-    def sumTransactionsByYear(self):
+    def sum_transactions_by_year(self):
         return None
 
-    def sumTransactionsByCategory(self):
+    def sum_transactions_by_category(self):
         return None
-

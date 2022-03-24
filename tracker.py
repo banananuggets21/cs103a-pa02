@@ -90,11 +90,11 @@ def process_choice(choice):
         date = input("date: ")
         desc = input("description: ")
         transaction = {'item #': itemNum,'amount': amount, 'category': transCategory, 'date': date, 'description': desc}
-        transactions.addTransaction(transaction)
+        transactions.add_Transaction(transaction)
     elif choice=='6':
         #Completed By James Kong on 3/23/2022
         delete = input("Enter transaction rowid: ")
-        transactions.deleteTransaction(delete)
+        transactions.delete_Transaction(delete)
     elif choice=='11':
         #Completed by James Kong on 3/21/2022
         print(menu)
