@@ -51,3 +51,27 @@ def test_delete(small_DB):
     transactions2 = small_DB.select_all()
     assert len(transactions0)==len(transactions2)
     assert len(transactions2) == len(transactions1)-1
+
+#Completed by Jeremy Bernstein on 3/23/2022
+@pytest.mark.date
+def test_date(small_DB):
+    transactions0 = small_DB.select_all()
+    transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': '20220323', 'description': 'banana'}
+    #rowid = small_DB.add_transaction(transaction0)
+    assert small_DB.sumTransactionsByDate == '20220323'
+
+#Completed by Jeremy Bernstein on 3/23/2022
+@pytest.mark.month
+def test_month(small_DB):
+    transactions0 = small_DB.select_all()
+    transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': '20220323', 'description': 'banana'}
+    #rowid = small_DB.add_transaction(transaction0)
+    assert small_DB.sumTransactionsByDate == '03'
+
+#Completed by Jeremy Bernstein on 3/23/2022
+@pytest.mark.year
+def test_year(small_DB):
+    transactions0 = small_DB.select_all()
+    transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': '20220323', 'description': 'banana'}
+    #rowid = small_DB.add_transaction(transaction0)
+    assert small_DB.sumTransactionsByDate == '2022'

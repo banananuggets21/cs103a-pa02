@@ -106,8 +106,6 @@ def process_choice(choice):
         #Completed by Jeremy Bernstein on 3/23/2022
         trans = transactions.select_all
         transactions.sumTransactionsByYear()
-    elif choice=='10':
-        transactions.delete_transaction(delete)
     elif choice == '11':
         #Completed by James Kong on 3/21/2022
         print(menu)
