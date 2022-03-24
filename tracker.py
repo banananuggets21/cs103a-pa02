@@ -30,10 +30,9 @@ Note the actual implementation of the ORM is hidden and so it
 could be replaced with PostgreSQL or Pandas or straight python lists
 
 '''
-
+import sys
 from transactions import Transaction
 from category import Category
-import sys
 
 transactions = Transaction('tracker.db')
 category = Category('tracker.db')
@@ -60,58 +59,56 @@ menu = '''
 
 
 def process_choice(choice):
-
-    if choice=='0':
+    ''' processes user choice '''
+    if choice == '0':
         return
-    elif choice=='1':
+    elif choice == '1':
         cats = category.select_all()
         print_categories(cats)
-    elif choice=='2':
+    elif choice == '2':
         name = input("category name: ")
         desc = input("category description: ")
         cat = {'name':name, 'desc':desc}
         category.add(cat)
-    elif choice=='3':
+    elif choice == '3':
         print("modifying category")
         rowid = int(input("rowid: "))
         name = input("new category name: ")
         desc = input("new category description: ")
         cat = {'name':name, 'desc':desc}
-        category.update(rowid,cat)
-    elif choice=='4': 
+        category.update(rowid, cat)
+    elif choice == '4': 
         #Completed by James Kong on 3/23/2022
         trans = transactions.select_all()
         print_transactions(trans)
-    elif choice=='5':
+    elif choice == '5':
         #Completed by James Kong on 3/23/2022
-        itemNum = int(input("transaction item #: "))
+        item_num = int(input("transaction item #: "))
         amount = int(input("transaction amount: "))
-        transCategory = int(input("category: "))
+        trans_category = int(input("category: "))
         date = input("date: ")
         desc = input("description: ")
-        transaction = {'item #': itemNum,'amount': amount, 'category': transCategory, 'date': date, 'description': desc}
-        transactions.add_Transaction(transaction)
-    elif choice=='6':
+        transaction = {'item #': item_num, 'amount': amount, 'category': trans_category, 'date': date, 'description': desc}
+        transactions.add_transaction(transaction)
+    elif choice == '6':
         #Completed By James Kong on 3/23/2022
         delete = input("Enter transaction rowid: ")
-        transactions.delete_Transaction(delete)
-    elif choice=='11':
+        transactions.delete_transaction(delete)
+    elif choice == '11':
         #Completed by James Kong on 3/21/2022
         print(menu)
     else:
-        print("choice",choice,"not yet implemented")
+        print("choice", choice, "not yet implemented")
 
     choice = input("> ")
     return(choice)
 
 
 def toplevel():
-    ''' handle the user's choice '''
-
-    ''' read the command args and process them'''
+    ''' handle the user's choice read the command args and process them'''
     print(menu)
     choice = input("> ")
-    while choice !='0' :
+    while choice != '0':
         choice = process_choice(choice)
     print('bye')
 
@@ -121,22 +118,24 @@ def toplevel():
 
 def print_transactions(items):
     ''' print the transactions '''
-    if len(items)==0:
+    if len(items) == 0:
         print('no items to print')
         return
     print('\n')
-    print("%-10s %-10d %-10s %-10d %-30s"%(
-        'item #','amount','category','date','description'))
+    print("%-10s %-10d %-10s %-10d %-30s" % (
+        'item #', 'amount', 'category', 'date', 'description'))
     print('-'*40)
     for item in items:
         values = tuple(item.values()) 
-        print("%-10s %-10d %-10s %-10d %-30s"%values)
+        print("%-10s %-10d %-10s %-10d %-30s" % values)
 
 def print_category(cat):
-    print("%-3d %-10s %-30s"%(cat['rowid'],cat['name'],cat['desc']))
+    ''' prints category '''
+    print("%-3d %-10s %-30s" % (cat['rowid'], cat['name'], cat['desc']))
 
 def print_categories(cats):
-    print("%-3s %-10s %-30s"%("id","name","description"))
+    ''' prints categories '''
+    print("%-3s %-10s %-30s" % ("id", "name", "description"))
     print('-'*45)
     for cat in cats:
         print_category(cat)
