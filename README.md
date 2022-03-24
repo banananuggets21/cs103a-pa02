@@ -32,9 +32,9 @@ transactions.py:98:4: C0116: Missing function or method docstring (missing-funct
 transactions.py:98:4: R0201: Method could be a function (no-self-use)
 
 ------------------------------------------------------------------
-jameskong@Jimmy-Ks-Laptop:/mnt/c/users/james/onedrive/desktop/Personal GitHub Repos/cs103a/cs103a-pa02$ pylint tracker.py
 Your code has been rated at 7.76/10 (previous run: 5.39/10, +2.37)
 
+jameskong@Jimmy-Ks-Laptop:/mnt/c/users/james/onedrive/desktop/Personal GitHub Repos/cs103a/cs103a-pa02$ pylint tracker.py
 ************* Module tracker
 tracker.py:29:61: C0303: Trailing whitespace (trailing-whitespace)
 tracker.py:80:23: C0303: Trailing whitespace (trailing-whitespace)
