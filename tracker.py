@@ -96,16 +96,16 @@ def process_choice(choice):
         transactions.delete_transaction(delete)
     elif choice=='7':
         #Completed By Jeremy Bernstein on 3/23/2022
-        trans = transactions.select_all
-        transactions.sumTransactionsByDate()
+        trans = transactions.select_all()
+        transactions.sum_transactions_by_date()
     elif choice=='8':
         #Completed by Jeremy Bernstein on 3/23/2022
-        trans = transactions.select_all
-        transactions.sumTransactionsByMonth()
+        trans = transactions.select_all()
+        transactions.sum_transactions_by_month()
     elif choice=='9':
         #Completed by Jeremy Bernstein on 3/23/2022
-        trans = transactions.select_all
-        transactions.sumTransactionsByYear()
+        trans = transactions.select_all()
+        transactions.sum_transactions_by_year()
     elif choice == '11':
         #Completed by James Kong on 3/21/2022
         print(menu)

@@ -61,7 +61,7 @@ class Transaction():
         con.close()
     
     #Completed by Jeremy Bernstein on 3/23/2022
-    def sumTransactionsByDate(self):
+    def sum_transactions_by_date(self):
         con= sqlite3.connect(self.fileName)
         cur = con.cursor()
         cur.execute("SELECT date from transactions")
@@ -72,7 +72,7 @@ class Transaction():
         return date
 
     #Completed by Jeremy Bernstein on 3/23/2022
-    def sumTransactionsByMonth(self):
+    def sum_transactions_by_month(self):
         con= sqlite3.connect(self.fileName)
         cur = con.cursor()
         cur.execute("SELECT date from transactions")
@@ -84,7 +84,7 @@ class Transaction():
         return date
     
     #Completed by Jeremy Bernstein on 3/23/2022
-    def sumTransactionsByYear(self):
+    def sum_transactions_by_year(self):
         con= sqlite3.connect(self.fileName)
         cur = con.cursor()
         cur.execute("SELECT date from transactions")
