@@ -64,36 +64,39 @@ class Transaction():
     def sum_transactions_by_date(self):
         con= sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("SELECT date from transactions")
-        date = (row[2] for row in cur.fetchall())
-        #date = date[1:]
+        cur.execute("SELECT date,* FROM transactions group by date")
+        date = ([row[0] for row in cur.fetchall()])
+        for month in date:
+            print(month)
         con.commit()
         con.close()
-        return date
+        return None
 
     #Completed by Jeremy Bernstein on 3/23/2022
     def sum_transactions_by_month(self):
         con= sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("SELECT date from transactions")
-        date = (row[2] for row in cur.fetchall())
+        cur.execute("SELECT date, * from transactions group by date")
+        date = (row[0] for row in cur.fetchall())
         for month in date:
-            month = month[4:5]
+            monthstr = str(month)
+            print(monthstr[4:6])
         con.commit()
         con.close()
-        return date
+        return None
 
     #Completed by Jeremy Bernstein on 3/23/2022
     def sum_transactions_by_year(self):
         con= sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("SELECT date from transactions")
-        date = (row[2] for row in cur.fetchall())
-        for year in date:
-            year = year[0:3]
+        cur.execute("SELECT date, * from transactions group by date")
+        date = (row[0] for row in cur.fetchall())
+        for month in date:
+            monthstr = str(month)
+            print(monthstr[0:4])
         con.commit()
         con.close()
-        return date
+        return None
 
     #Completed by Hiro Chen on 3/24/2022
     def sum_transactions_by_category(self):
