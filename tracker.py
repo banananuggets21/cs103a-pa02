@@ -107,6 +107,7 @@ def process_choice(choice):
         trans = transactions.select_all()
         transactions.sum_transactions_by_year()
     elif choice == '10':
+        #Complated by Hiro Chen on 3/24/2022
         trans = transactions.select_all()
         transactions.sum_transactions_by_category()
     elif choice == '11':
