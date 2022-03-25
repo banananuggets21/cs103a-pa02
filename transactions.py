@@ -67,7 +67,8 @@ class Transaction():
         cur.execute("SELECT date,* FROM transactions group by date")
         date = ([row[0] for row in cur.fetchall()])
         for month in date:
-            print(month)
+            monthStr = str(month)
+            print(monthStr[4:6] + "-" + monthStr[6:8] + "-" + monthStr[0:4])
         con.commit()
         con.close()
         return None
@@ -92,8 +93,8 @@ class Transaction():
         cur.execute("SELECT date, * from transactions group by date")
         date = (row[0] for row in cur.fetchall())
         for month in date:
-            monthstr = str(month)
-            print(monthstr[0:4])
+            monthStr = str(month)
+            print(monthStr[0:4])
         con.commit()
         con.close()
         return None
@@ -102,7 +103,7 @@ class Transaction():
     def sum_transactions_by_category(self):
         con = sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.exceute("SELECT date from transactions")
+        cur.execute("SELECT date from transactions")
         category = [row[1] for row in cur.fetchall()]
         con.commit()
         con.close()
