@@ -74,7 +74,7 @@ def test_year(small_DB):
     assert small_DB.sum_transactions_by_year() == '2022'
 
 #Completed by Hiro Chen on 3/24/2022
-@pytest.mark.year
+@pytest.mark.category
 def test_category(small_DB):
     transactions0 = small_DB.select_all()
     transaction0 = {'item #': 5,'amount': 10, 'category': 'fruit', 'date': '20220323', 'description': 'banana'}
