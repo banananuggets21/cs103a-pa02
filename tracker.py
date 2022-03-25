@@ -26,7 +26,7 @@ In place of SQL queries, we will have method calls.
 
 This app will store the data in a SQLite database ~/tracker.db
 
-Note the actual implementation of the ORM is hidden and so it 
+Note the actual implementation of the ORM is hidden and so it
 could be replaced with PostgreSQL or Pandas or straight python lists
 
 '''
@@ -77,7 +77,7 @@ def process_choice(choice):
         desc = input("new category description: ")
         cat = {'name':name, 'desc':desc}
         category.update(rowid, cat)
-    elif choice == '4': 
+    elif choice == '4':
         #Completed by James Kong on 3/23/2022
         trans = transactions.select_all()
         print_transactions(trans)
@@ -106,6 +106,9 @@ def process_choice(choice):
         #Completed by Jeremy Bernstein on 3/23/2022
         trans = transactions.select_all()
         transactions.sum_transactions_by_year()
+    elif choice == '10':
+        trans = transactions.select_all()
+        transactions.sum_transactions_by_category()
     elif choice == '11':
         #Completed by James Kong on 3/21/2022
         print(menu)
@@ -137,7 +140,7 @@ def print_transactions(items):
     print("%-10s %-10s %-10s %-10s %-30s" % ('item #', 'amount', 'category', 'date', 'description'))
     print('-'*40)
     for item in items:
-        values = tuple(item.values()) 
+        values = tuple(item.values())
         print("%-10s %-10s %-10s %-10s %-30s" % values)
 
 def print_category(cat):
@@ -154,4 +157,3 @@ def print_categories(cats):
 # here is the main call!
 
 toplevel()
-
