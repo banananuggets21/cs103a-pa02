@@ -100,7 +100,7 @@ class Transaction():
         con = sqlite3.connect(self.file_name)
         cur = con.cursor()
         cur.exceute("SELECT date from transactions")
-        category = <row[1] for row in cur.fetchall())
+        category = [row[1] for row in cur.fetchall()]
         con.commit()
         con.close()
         return category
