@@ -2,7 +2,7 @@ import sqlite3
 
 def to_trans_dict(trans_tuple):
     '''Completed By James Kong on 3/23/2022'''
-    trans = {'rowid':trans_tuple[0], 'item #':trans_tuple[1], 'amount':trans_tuple[2], 'category':trans_tuple[3], 'date':trans_tuple[4], 'description':trans_tuple[5]}
+    trans = {'item #':trans_tuple[1], 'amount':trans_tuple[2], 'category':trans_tuple[3], 'date':trans_tuple[4], 'description':trans_tuple[5]}
     return trans
 
 def to_trans_dict_list(trans_tuples):

@@ -83,10 +83,10 @@ def process_choice(choice):
         print_transactions(trans)
     elif choice == '5':
         #Completed by James Kong on 3/23/2022
-        item_num = int(input("transaction item #: "))
-        amount = int(input("transaction amount: "))
+        item_num = input("transaction item #: ")
+        amount = input("transaction amount: ")
         trans_category = input("category: ")
-        date = int(input("date: "))
+        date = input("date: ")
         desc = input("description: ")
         transaction = {'item #': item_num, 'amount': amount, 'category': trans_category, 'date': date, 'description': desc}
         transactions.add_transaction(transaction)
@@ -134,11 +134,11 @@ def print_transactions(items):
         print('no items to print')
         return
     print('\n')
-    print("%-10s %-10d %-10s %-10d %-30s" % ('item #', 'amount', 'category', 'date', 'description'))
+    print("%-10s %-10s %-10s %-10s %-30s" % ('item #', 'amount', 'category', 'date', 'description'))
     print('-'*40)
     for item in items:
         values = tuple(item.values()) 
-        print("%-10s %-10d %-10s %-10d %-30s" % values)
+        print("%-10s %-10s %-10s %-10s %-30s" % values)
 
 def print_category(cat):
     ''' prints category '''
