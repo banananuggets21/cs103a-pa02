@@ -103,8 +103,8 @@ class Transaction():
     def sum_transactions_by_category(self):
         con = sqlite3.connect(self.file_name)
         cur = con.cursor()
-        cur.execute("SELECT date from transactions")
-        category = [row[1] for row in cur.fetchall()]
+        cur.execute("SELECT category from transactions")
+        category = (row[0] for row in cur.fetchall())
         con.commit()
         con.close()
         return category
