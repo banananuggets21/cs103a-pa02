@@ -105,7 +105,8 @@ class Transaction():
         cur = con.cursor()
         cur.execute("SELECT category from transactions")
         #Need help with finding the correct position of category
-        category = (row[0] for row in cur.fetchall())
+        #cur.fetchall()
+        category = cur.fetchmany(size = 1)
         con.commit()
         con.close()
         return category
