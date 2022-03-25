@@ -104,6 +104,7 @@ class Transaction():
         con = sqlite3.connect(self.file_name)
         cur = con.cursor()
         cur.execute("SELECT category from transactions")
+        #Need help with finding the correct position of category
         category = (row[0] for row in cur.fetchall())
         con.commit()
         con.close()
